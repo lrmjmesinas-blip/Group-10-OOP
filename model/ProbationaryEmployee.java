@@ -2,21 +2,32 @@ package model;
 
 public class ProbationaryEmployee extends Employee {
 
-    private double riceSubsidy;
-
     public ProbationaryEmployee(
             String employeeId,
             String firstName,
             String lastName,
             String position,
+            String status,
+            String immediateSupervisor,
             double basicSalary,
             double hourlyRate,
-            double riceSubsidy) {
+            double riceSubsidy,
+            double phoneAllowance,
+            double clothingAllowance) {
 
-        super(employeeId, firstName, lastName,
-              position, basicSalary, hourlyRate);
-
-        this.riceSubsidy = riceSubsidy;
+        super(
+                employeeId,
+                firstName,
+                lastName,
+                position,
+                status,
+                immediateSupervisor,
+                basicSalary,
+                hourlyRate,
+                riceSubsidy,
+                phoneAllowance,
+                clothingAllowance
+        );
     }
 
     @Override

@@ -2,27 +2,32 @@ package model;
 
 public class RegularEmployee extends Employee {
 
-    private double riceSubsidy;
-    private double phoneAllowance;
-    private double clothingAllowance;
-
     public RegularEmployee(
             String employeeId,
             String firstName,
             String lastName,
             String position,
+            String status,
+            String immediateSupervisor,
             double basicSalary,
             double hourlyRate,
             double riceSubsidy,
             double phoneAllowance,
             double clothingAllowance) {
 
-        super(employeeId, firstName, lastName,
-              position, basicSalary, hourlyRate);
-
-        this.riceSubsidy = riceSubsidy;
-        this.phoneAllowance = phoneAllowance;
-        this.clothingAllowance = clothingAllowance;
+        super(
+                employeeId,
+                firstName,
+                lastName,
+                position,
+                status,
+                immediateSupervisor,
+                basicSalary,
+                hourlyRate,
+                riceSubsidy,
+                phoneAllowance,
+                clothingAllowance
+        );
     }
 
     @Override
