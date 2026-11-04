@@ -30,6 +30,10 @@ public class EmployeeDAO {
             while ((line = br.readLine()) != null) {
 
                 String[] data = line.split(",");
+
+if (data.length < 21) {
+    continue;
+}
                 System.out.println(Arrays.toString(data));
 
                 Employee employee;

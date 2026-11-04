@@ -33,6 +33,10 @@ public class AttendanceDAO {
 
                 String[] data = line.split(",");
 
+                if (data.length < 5) {
+                    continue;
+                }
+
                 AttendanceRecord record =
                         new AttendanceRecord(
                                 data[0],

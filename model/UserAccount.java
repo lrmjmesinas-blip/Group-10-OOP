@@ -6,17 +6,20 @@ public class UserAccount {
     private String firstName;
     private String employeeId;
     private String role;
+    private String password;
 
     public UserAccount(
             String username,
             String firstName,
             String employeeId,
-            String role) {
+            String role,
+            String password) {
 
         this.username = username;
         this.firstName = firstName;
         this.employeeId = employeeId;
         this.role = role;
+        this.password = password;
     }
 
     public String getUsername() {
@@ -38,4 +41,9 @@ public class UserAccount {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
 }
