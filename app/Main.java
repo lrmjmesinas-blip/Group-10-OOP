@@ -1,41 +1,62 @@
 package app;
 
-import dao.EmployeeDAO;
-import model.Employee;
-import model.Payslip;
-import service.PayrollService;
+import dao.UserDAO;
+import model.UserAccount;
+import service.AuthenticationService;
+
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        EmployeeDAO employeeDAO =
-                new EmployeeDAO(
+        Scanner scanner = new Scanner(System.in);
+
+        UserDAO userDAO =
+                new UserDAO(
                         "data/EmployeeDetails.csv"
                 );
 
-        PayrollService payrollService =
-                new PayrollService();
-
-        if (employeeDAO.getAllEmployees().isEmpty()) {
-
-            System.out.println(
-                    "No employees loaded."
-            );
-
-            return;
-        }
-
-        Employee employee =
-                employeeDAO.getAllEmployees().get(0);
-
-        Payslip payslip =
-                payrollService.processPayroll(
-                        employee
+        AuthenticationService auth =
+                new AuthenticationService(
+                        userDAO
                 );
 
-        System.out.println(
-                payslip
-        );
+        System.out.println("=== MOTORPH LOGIN ===");
+
+        System.out.print("Username: ");
+        String username =
+                scanner.nextLine();
+
+        System.out.print("Password: ");
+        String password =
+                scanner.nextLine();
+
+        UserAccount user =
+                auth.login(
+                        username,
+                        password
+                );
+
+        if (user != null) {
+
+            System.out.println(
+                    "\nWelcome "
+                    + user.getFirstName());
+
+            System.out.println(
+                    "Role: "
+                    + user.getRole());
+
+            System.out.println("\nMENU");
+            System.out.println("1. View Payroll");
+            System.out.println("2. View Attendance");
+            System.out.println("3. View Leave Balance");
+
+        } else {
+
+            System.out.println(
+                    "\nLogin Failed");
+        }
     }
 }
