@@ -2,8 +2,11 @@ package dao;
 
 import model.UserAccount;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
@@ -34,16 +37,15 @@ public class UserDAO {
                     continue;
                 }
 
-                UserAccount user =
+                users.add(
                         new UserAccount(
-                                data[1],
-                                data[2],
-                                data[4],
-                                data[0],
-                                data[13]
-                        );
-
-                users.add(user);
+                                data[1],   // username
+                                data[4],   // firstname
+                                data[0],   // employee id
+                                data[13],  // role/position
+                                data[2]    // password
+                        )
+                );
             }
 
         } catch (IOException e) {

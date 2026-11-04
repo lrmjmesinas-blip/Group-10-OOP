@@ -2,6 +2,7 @@ package app;
 
 import dao.EmployeeDAO;
 import model.Employee;
+import model.Payslip;
 import service.PayrollService;
 
 public class Main {
@@ -10,23 +11,21 @@ public class Main {
 
         EmployeeDAO employeeDAO =
                 new EmployeeDAO(
-                        "data/EmployeeDetails.csv");
+                        "data/EmployeeDetails.csv"
+                );
 
         PayrollService payrollService =
                 new PayrollService();
 
-        for (Employee employee :
-                employeeDAO.getAllEmployees()) {
+        Employee employee =
+                employeeDAO.getAllEmployees().get(0);
 
-            System.out.println(
-                    employee.getFullName());
+        Payslip payslip =
+                payrollService.processPayroll(
+                        employee);
 
-            System.out.println(
-                    "Net Salary: "
-                    + payrollService
-                        .calculateNetSalary(employee));
-
-            System.out.println();
-        }
+        System.out.println(
+                payslip
+        );
     }
 }

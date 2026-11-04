@@ -5,7 +5,7 @@ import model.UserAccount;
 
 public class AuthenticationService {
 
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     public AuthenticationService(UserDAO userDAO) {
         this.userDAO = userDAO;
