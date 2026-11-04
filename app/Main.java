@@ -17,12 +17,22 @@ public class Main {
         PayrollService payrollService =
                 new PayrollService();
 
+        if (employeeDAO.getAllEmployees().isEmpty()) {
+
+            System.out.println(
+                    "No employees loaded."
+            );
+
+            return;
+        }
+
         Employee employee =
                 employeeDAO.getAllEmployees().get(0);
 
         Payslip payslip =
                 payrollService.processPayroll(
-                        employee);
+                        employee
+                );
 
         System.out.println(
                 payslip

@@ -43,7 +43,10 @@ public class Payslip {
 
     @Override
     public String toString() {
-        return "Employee: "
+
+        return "\nEMPLOYEE PAYSLIP\n"
+                + "=======================\n"
+                + "Employee: "
                 + employee.getFullName()
                 + "\nGross Salary: "
                 + grossSalary
