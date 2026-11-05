@@ -35,8 +35,6 @@ public class EmployeeDAO {
                     continue;
                 }
 
-                System.out.println(Arrays.toString(data));
-
                 try {
 
                     Employee employee;
@@ -80,9 +78,7 @@ public class EmployeeDAO {
 
                 } catch (NumberFormatException e) {
 
-                    System.out.println(
-                            "Skipped malformed record: "
-                                    + data[0]);
+                    
                 }
             }
 
