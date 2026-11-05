@@ -1,8 +1,14 @@
 package app;
 
 import dao.UserDAO;
+import dao.EmployeeDAO;
+
 import model.UserAccount;
+import model.Employee;
+import model.Payslip;
+
 import service.AuthenticationService;
+import service.PayrollService;
 
 import java.util.Scanner;
 
@@ -14,13 +20,11 @@ public class Main {
 
         UserDAO userDAO =
                 new UserDAO(
-                        "data/EmployeeDetails.csv"
-                );
+                        "data/EmployeeDetails.csv");
 
         AuthenticationService auth =
                 new AuthenticationService(
-                        userDAO
-                );
+                        userDAO);
 
         System.out.println("=== MOTORPH LOGIN ===");
 
@@ -35,8 +39,7 @@ public class Main {
         UserAccount user =
                 auth.login(
                         username,
-                        password
-                );
+                        password);
 
         if (user != null) {
 
@@ -44,14 +47,25 @@ public class Main {
                     "\nWelcome "
                     + user.getFirstName());
 
-            System.out.println(
-                    "Role: "
-                    + user.getRole());
+            EmployeeDAO employeeDAO =
+                    new EmployeeDAO(
+                            "data/EmployeeDetails.csv");
 
-            System.out.println("\nMENU");
-            System.out.println("1. View Payroll");
-            System.out.println("2. View Attendance");
-            System.out.println("3. View Leave Balance");
+            Employee employee =
+                    employeeDAO.findEmployeeById(
+                            user.getEmployeeId());
+
+            if (employee != null) {
+
+                PayrollService payrollService =
+                        new PayrollService();
+
+                Payslip payslip =
+                        payrollService.processPayroll(
+                                employee);
+
+                System.out.println(payslip);
+            }
 
         } else {
 

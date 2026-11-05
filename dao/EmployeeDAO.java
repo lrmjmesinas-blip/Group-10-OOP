@@ -93,4 +93,16 @@ public class EmployeeDAO {
 
         return employees;
     }
+
+    public Employee findEmployeeById(String employeeId) {
+
+        for (Employee employee : getAllEmployees()) {
+
+            if (employee.getEmployeeId().equals(employeeId)) {
+            return employee;
+            }
+        }
+
+        return null;
+    }
 }
