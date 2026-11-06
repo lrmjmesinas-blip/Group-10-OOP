@@ -56,8 +56,7 @@ public class Login extends javax.swing.JFrame {
 
         jPnlDarkBlue.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logos9/empdes3.png"))); // NOI18N
-
+        jLblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logos/empdes3.png")));
         jLblUname.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLblUname.setForeground(new java.awt.Color(255, 255, 255));
         jLblUname.setText("Username");
