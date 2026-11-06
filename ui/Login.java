@@ -3,22 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package motorph9;
+package ui;
+
+import dao.UserDAO;
+import model.UserAccount;
+import service.AuthenticationService;
 
 import javax.swing.JOptionPane;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import static com.opencsv.ICSVWriter.NO_QUOTE_CHARACTER;
-import com.opencsv.exceptions.CsvException;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.lang.String;
 import javax.swing.*;
 
 /**
@@ -27,9 +19,7 @@ import javax.swing.*;
  */
 public class Login extends javax.swing.JFrame {
 
-    private static final String CSV_FILE = "src/motorph9/Credentials.csv";
-    //private String fname;
-    
+ 
     
     
     /**
@@ -185,62 +175,54 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLoginActionPerformed
-        
-                String userName = jUnameField.getText();
-                String passWord = new String(jPwordField.getPassword());
-                User user = null;
+        private void jBtnLoginActionPerformed(
+        java.awt.event.ActionEvent evt) {
 
-                try {
-                    user = validateLogin(userName, passWord);
-                    //user.setFirstname(fname);
-                } catch (IOException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+    String userName = jUnameField.getText();
 
-                if (user == null) {
-                    JOptionPane.showMessageDialog(Login.this, 
-                                                  "Incorrect Credential.",
-                                                  "",
-                                                  JOptionPane.ERROR_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(Login.this, 
-                                                  "Log In Successful!!!",
-                                                  "",
-                                                  JOptionPane.PLAIN_MESSAGE);
-                     //user.setFirstname(fname);
+    String passWord =
+            new String(
+                    jPwordField.getPassword());
 
-                    
-                    Dashboard newClassInstance = new Dashboard(user.getFirstName(),user.getEmployeeId());
-                        newClassInstance.setVisible(true);
-                        
-                    dispose();
-                }
-    }//GEN-LAST:event_jBtnLoginActionPerformed
- 
-     private User validateLogin(String userName, String passWord) throws IOException {
-        String line;
-        CSVReader csvReader = null;
+    UserDAO userDAO =
+            new UserDAO(
+                    "data/EmployeeDetails.csv");
 
-        try {
-            csvReader = new CSVReader(new FileReader(new File(CSV_FILE)));
-            List<String[]> allData = csvReader.readAll();
-            for (String[] row : allData) {
-                if (row[0].equalsIgnoreCase(userName) && row[1].equals(passWord)) {
-                    //fname = row[2];
-                    return new User(userName, row[2], row[3]);
-                }
-            }
-        } catch (CsvException e) {
-            e.printStackTrace();
-        } finally {
-            if (csvReader != null) {
-                csvReader.close();
-            }
-        }
-        return null;
+    AuthenticationService auth =
+            new AuthenticationService(
+                    userDAO);
+
+    UserAccount user =
+            auth.login(
+                    userName,
+                    passWord);
+
+    if (user == null) {
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Incorrect Credential.",
+                "",
+                JOptionPane.ERROR_MESSAGE);
+
+    } else {
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Log In Successful!!!",
+                "",
+                JOptionPane.PLAIN_MESSAGE);
+
+        System.out.println(
+                "Welcome "
+                + user.getFirstName());
+
+        dispose();
     }
+}
+
     
+       
     private void jPwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPwordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPwordFieldActionPerformed
