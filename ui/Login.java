@@ -212,9 +212,12 @@ public class Login extends javax.swing.JFrame {
                 "",
                 JOptionPane.PLAIN_MESSAGE);
 
-        System.out.println(
-                "Welcome "
-                + user.getFirstName());
+        Dashboard dashboard =
+        new Dashboard(
+                user.getFirstName(),
+                user.getEmployeeId());
+
+        dashboard.setVisible(true);
 
         dispose();
     }
