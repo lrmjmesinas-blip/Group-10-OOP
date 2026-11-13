@@ -45,16 +45,16 @@ public class Payslip {
     public String toString() {
 
         return "\nEMPLOYEE PAYSLIP\n"
-                + "=======================\n"
-                + "Employee: "
-                + employee.getFullName()
-                + "\nGross Salary: "
-                + grossSalary
-                + "\nBenefits: "
-                + benefits
-                + "\nDeductions: "
-                + deductions
-                + "\nNet Salary: "
-                + netSalary;
+            + "=======================\n"
+            + "Employee: "
+            + employee.getFullName()
+            + "\nGross Salary: ₱"
+            + String.format("%.2f", grossSalary)
+            + "\nBenefits: ₱"
+            + String.format("%.2f", benefits)
+            + "\nDeductions: ₱"
+            + String.format("%.2f", deductions)
+            + "\nNet Salary: ₱"
+            + String.format("%.2f", netSalary);
     }
 }
