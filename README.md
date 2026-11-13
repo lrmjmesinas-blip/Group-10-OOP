@@ -8,7 +8,7 @@ The system was redesigned from a procedural implementation into an OOP architect
 
 ## **Features**
 
-Authentication, Employee Management, Payroll Processing, Attendance Management, Leave Management, GUI Features
+Authentication, Payroll Processing, Attendance Management, Leave Balance Tracking, GUI Features
 
 ## **OOP Principles Applied**
 
